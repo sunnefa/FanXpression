@@ -1,0 +1,186 @@
+FanXpression changelog
+
+Version 1.0.3 started on 27.09.2011
+    Changes from version 1.0.2
+        -Changed the name of sections from sections to extensions on the surface - most of the code is still unchanged
+        -Fixed a bug with the login if username or password were incorrect
+        -Fixed a bug with the javascript popup when confirming deletion
+        -Reverted back to the old tag system, the javascript was screwing everything up more than it should have
+
+Version 1.0.2 started on 22.09.2011
+    Changes from version 1.0.1
+        -Fixed a bug in the disco section where session messages didn't show up
+        -Fixed a bug in tinyupload where the upload form wasn't showing up
+        -Fixed a bug where page didn't reload if info was wrong on posts and pages
+        -Fixed a bug where user's couldn't update their password
+        -Fixed a bug where comments weren't deleted at the same time as posts were
+        -Fixed bug with the error handling function for servers where error_log() has been disabled
+        -Fixed minor bug in the sending of new password emails where two slashes appeared in the url
+
+Version 1.0.1 started on 21.09.2011
+    Changes from version 1.0.0
+        -Fixed bug with date() where some servers complained about the use of timezones
+        -Added the timezone setting
+        -Fixed bug where the index.php wasn't redirecting to the installer if the script isn't installed
+        -Fixed bug where the database details weren't included in the installer
+
+Version 1.0 started on 12.09.2011
+    Changes from version 0.9
+        Code changes
+            -FanXpression is now released under the GNU GPL license. A comment noting that has been added to all files
+            -Finished writing the documentation on themes, requirements and installing
+            -Removed the SupercategoryView class and moved the function to the functions file
+            -Changed the name of supercategories to categories
+            -Added date_format setting
+            -Added argument $order to get_data() in AbstractDatabase for ordering by a field
+            -Started using jQuery tag editor and adapted the posts page to accomodate that
+            -Adjusted the tinyMCE with more features for editing content
+
+        MySQL changes
+            -Renamed the supercategories table to categories
+            -Renamed the supercat_id fields on the pages and sections tables to cat_id
+
+Version 0.9 started on 06.09.2011
+    Changes from version 0.8
+        Code changes
+            -Created install file for main script
+            -Switched from using constants for the mysql connection details to using $FANX_CONFIG variable
+            -Created InstallModel class that extends the AbstractDatabase
+            -Created function to help with the install, one to create the db_config.php file and another to create the 
+            htaccess file.
+            -Fixed the inactive section function to not include hidden files like .DS_Store and Thumbs.db
+            -Created the install file for the discography section
+            -Started writing help section
+            -Created the image resize functionality
+            -Added setting max_image_size
+            -Scrapped the Archiv tinyMCE plugin and started using TinyUpload instead, after some tweaks
+            -Created the comments form and fanx_post_comments.php to handle the actual adding
+            -Added setting approve_comments
+
+Version 0.8 started on 31.08.2011
+    Changes from version 0.7
+        Code changes
+            -is_supercat, is_page and is_section functions deprecated - using different permalink structure
+            -posts.php and supercategories.php deprecated, index.php acts as the controller instead
+            -Changed the show.php in the discography section to act as a controller for that
+            -Removed the is_album, is_song and is_category from the discography functions
+            -Created the DiscographyView class to handle showing the discography items
+            -Added setting options for theme and posts per page
+            -Finished the dashboard
+            -Finalized the template for the discography section, all except the lyrics lightbox effect
+
+Version 0.7 started on 26.08.2011
+    Changes from version 0.6
+        Code changes
+            -Made forgotten username and password functionality for the login
+            -Fixed up the login page css
+            -Moved the css and javascript in the admin template to external files
+            -Validated all the admin html using the W3 validator
+            -Created url_parser function
+            -Created htaccess file
+            -Created is_supercat($title) function to check if a part of the url is a supercategory
+            -Created is_section($name) function to check if a part of the url is a section
+            -Created main_menu() function which returns the main menu
+            -Created Theme class to process the templates
+
+        MySQL changes
+
+Version 0.6 started on 25.08.2011
+    Changes from version 0.5
+        Code changes
+            -Added ability to change a section's settings, such as the supercategory and title
+            -The adding of new sections as well as complete removal of sections has now been added to the wish list
+            -Added function show_messages() to display any error or success messages in the session
+            -Made it so that if a user deletes a supercategory all sections in it are deactived
+            -Made it so that if a user deletes a supercategory all pages in it are deleted as well
+            -Made it so that if a user deletes a category in the disco section any albums in it are moved outside of categories
+
+        MySQL changes
+            -Changed 'supercat_id' on in sections table to hold the default value of 0
+
+Version 0.5 started on 23.08.2011
+    Changes from version 0.4
+        Code changes
+            -Started creating the section manager
+            -Created the discography section
+
+        MySQL changes
+            -Changed 'date_installed' field in sections table to 'active' to indicate if the section has been activated
+
+Version 0.4 started on 22.08.2011
+    Changes from version 0.3
+        Code changes
+            -Created tag manager
+            -Created comments manager
+            -Added pagination to posts, tags, comments, pages, users and supercategories
+
+        MySQL changes
+
+
+Version 0.3 started on 20.08.2011
+    Changes from version 0.2
+        Code changes
+            -Created PostsModel class
+            -Removed post categories functionality
+            -Added the ability to have posts published or not
+            -Added the trash can for posts
+            -Added a 'Delete forever' option to posts
+            -Completed the trash can feature for pages
+            -Added the 'Delete forever' option to pages
+            -Removed the feature image from posts and pages, it was clashing with the TinyMCE image uploads
+
+        MySQL changes
+            -Added field status to the posts table
+            -Removed field category from the posts table
+            -Removed field feature_image from the posts table
+            -Removed field feature_image from the pages table
+
+Version 0.2 started on 22.07.2011
+    Changes from version 0.1
+        Code changes
+            -Created PagesModel class
+            -Created pages pages with add, edit and delete functionality
+            -Removed the ability for pages to have children. It would be more efficient to use supercategories instead
+            -Added the ability to have pages published or not
+            -Created the add pages functionality
+            -Created the trash can for pages
+            -Created the restore ability for pages
+
+        MySQL changes
+            -Added field status to the pages table
+            -Removed field parent from the pages table
+
+Version 0.1 started on 11.07.2011
+    Changes from proposal
+
+        Code changes
+            -Changed function AbstractDatabase->sanitize($string) from private to protected
+            -Added function fanx_salty($string) to hash passwords
+            -Added function logged_in() to check if a user is logged in
+            -Added function __autoload($classname) for autoloading of classes
+            -Created login and logout pages for the admin panel
+            -Set up the directory structure
+            -Created user list and user profile pages
+            -Added class Images to handle any image uploads and manipulation
+            -Added function strong_password() to validate passwords with a regular expression
+            -Added function is_admin() to check the role of the user currently logged in
+            -Added function is_email() to validate email address with a regular expression
+            -Added function is_own_profile() to make sure that a user doesn't change their own user role
+            -Added function is username() to make sure that usernames don't have illegal characters
+            -Added function validate_user_info() to the UserModel class to validate username, email and password in one go
+            -Added function reload() to reload the current page/redirect to another page
+            -Added function update_single_field() to the UserModel class to change the value of only one field
+            -Created the add user, activate and deactive pages
+            -Created SettingsModel class
+            -Created SupercategoriesModel class
+            -Created SupercategoriesView class
+            -Added function update_single_field to the SupercategoriesModel class to change the value of only one field
+            -Added function recurse_categories() to SupercategoriesView class to recursively display the categories
+            -Created the settings page with update functionality
+            -Created a list of supercategegories with add, edit and delete functionality
+            -Added delete_data() to AbstractDatabase class
+        
+        MYSQL changes
+            -Added 'password' field to table fanx_users
+            -Added 'date_registered' field to table fanx_users
+            -Added 'status' field to table fanx_users

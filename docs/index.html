@@ -1,0 +1,235 @@
+<!--
+/***********************
+    FanXpression
+    ********************
+    Copyright 2011 Sunnefa Lind
+    
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    ********************
+    FanXpression version: Version 1.0.3 Beta
+    Current file: docs/index.html
+    First created: 8.9.2011
+
+ *********************/
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>FanXpression documentation</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style type="text/css">
+		pre {
+		 white-space: pre-wrap;
+		 white-space: -moz-pre-wrap;
+		 white-space: -o-pre-wrap;
+		 background: #faf8f0;
+		}
+		pre code {
+		 display: block;
+		 padding: 0.5em 1em;
+		 border: 1px solid #bebab0;
+		}
+		</style>
+    </head>
+    <body>
+    	<a href="#top"></a>
+        <h1>FanXpression documentation</h1>
+        <ul>
+            <li><a href="#requirements">Requirements</a></li>
+            <li><a href="#installing">Installing</a></li>
+            <li><a href="#themes">Themes</a></li>
+            <li><a href="#FAQ">FAQ</a></li>
+            <li><a href="#about">About FanXpression</a></li>
+        </ul>
+        <div style="height:60px;">&nbsp;</div>
+        <a name="requirements"></a>
+        <h2>Requirements</h2>
+        <p>All you need to install FanXpression is Apache, PHP and MySQL. If you're not sure whether PHP and MySQL are installed on your server, ask you hosting company.</p>
+        <p>You also need to be a big fan of something, a celebrity, movie, band, book, sports team or anything else you can think of.</p>
+        <p><a href="#top">Back to top</a></p>
+        <div style="height:30px;">&nbsp;</div>
+        
+        <a name="installing"></a>
+        <h2>Installing FanXpression</h2>
+        <p>After you've downloaded FanXpression, unzip the archive and upload everything to the public_html (in some cases htdocs or www) folder on your server. Make sure all the files were uploaded correctly.</p>
+        <p>To install FanXpression navigate to http://www.whateveryourdomain.is/install.php and follow the instructions.</p>
+        <p>You will need to know your database username, database password, database name and host name. You can get these through your cPanel (if you have one) or by asking your hosting company.</p>
+        <p>If the install failed for some reason, delete all the folders in your fanx_uploads folder (if there are any), remove all the database tables that may have been created from your database (if you don't know how to do this you can ask your host to do it for you) and attempt the install again.</p>
+        <p><a href="#top">Back to top</a></p>
+        <div style="height:30px;">&nbsp;</div>
+        
+        <a name="themes"></a>
+        <h2>Themes</h2>
+        <p>To make your own theme, you can either start from scratch or duplicate the default theme and edit it.</p>
+        <p>In addition to the functions listed below, you can of course use any PHP functions you wish in your theme.</p>
+        <h3>Theme files</h3>
+        <p>The following files are mandatory for a theme to work. If the file is not found in the selected theme, a file from the default theme will be used instead.</p>
+        <ul>
+        	<li>
+            	<strong>header.php</strong>
+                <p>This file is where you put all your header code, the start of your html and body tags, your header, title and meta tags and include any css style sheets or javascript files you are going to use. This is also file in which the main navigation is, and a good place to put a top banner.</p>
+                <p>The following functions are available in this file:</p>
+                <ul>
+                	<li>
+                    	<em>main_menu()</em>
+                    	<p>This function prints the main navigation menu, with a link to the home page (if you wish) and any supercategories you have created as well as active sections if they have not been sorted into a supercategory. This function takes an optional argument, where you can specify which tags to put before the whole menu, which tags to put after the whole menu and which tags to put before and after each link.</p>
+                        <p>Example: </p>
+<pre><code>&lt;?php main_menu(array(
+    'before_menu' => '&lt;ul class="menu"&gt;',
+    'after_menu' => '&lt;/ul&gt;',
+    'before_link' => '&lt;li&gt;',
+    'after_link' => '&lt;/li&gt;',
+    'include_home_link' => true
+)); ?&gt;</code></pre>
+                    </li>
+                </ul>
+                <p>The following variables are available in this file: </p>
+                <ul>
+                	<li><em>$site_title</em> - This variable holds the title of the site as per your settings as well as the title of the current page, post, category or section being viewed.</li>
+                    <li><em>$theme_path</em> - This variable holds the full URL to your theme, making it useful when creating links or for use in the src attribute on img tags.</li>
+                </ul>
+                <p>To be able to use these variables you will need to use PHP's echo function. Example:</p>
+                <pre><code>&lt;?php echo $site_title; ?&gt;</code></pre>
+                <p>You can use echo inside any html structure you choose. If you are unsure, you can use the default theme as a reference.</p>
+            </li>
+            <li>
+            	<strong>footer.php</strong>
+                <p>This file is where you put the end of your html code. The closing html tag, the closing body tag and any footer message you might want to show, such as a copyright notice or a link to the top of the page. All the same functions and variables are available to this file as the header.php file above.</p>
+            </li>
+            <li>
+            	<strong>post.php</strong>
+                <p>This file is responsible for showing a single post, both when viewing single posts and when viewing multiple posts. In this file is where you put the post title, the post content, tags, author, etc.</p>
+                <p>The following variables are available to this file:</p>
+                <ul>
+                	<li><em>$permalink</em> - The link to view the single post with comments</li>
+                    <li><em>$title</em> - The title of the post</li>
+                    <li><em>$content</em> - The posts's content</li>
+                    <li><em>$date</em> - The date the post was made</li>
+                    <li><em>$username</em> - The name of the user who made the post</li>
+                    <li><em>$tags</em> - A comma separated list of the tags this post has</li>
+                </ul>
+                <p>To be able to use these variables you will need to use PHP's echo function. Example:</p>
+                <pre><code>&lt;?php echo $title; ?&gt;</code></pre>
+                <p>You can use echo inside any html structure you choose. If you are unsure, you can use the default theme as a reference.</p>
+            </li>
+            <li>
+            	<strong>404.php</strong>
+                <p>This file is where you put whatever message you would like displayed if a file or post was not found. All the same functions and variables are available to this files as the header.php file above.</p>
+            </li>
+            <li>
+            	<strong>comments.php</strong>
+                <p>This file is responsible for showing a single comment. In this file is where you put the commenter name, their website, email address and the comment itself.</p>
+                <p>The following variables are available to this file:</p>
+                <ul>
+                	<li><em>$author_name</em> - The name of the comment's author</li>
+                    <li><em>$author_website</em> - The url of the comment author's website</li>
+                    <li><em>$author_email</em> - The email address of the comment's author</li>
+                    <li><em>$comment</em> - The comment's content</li>
+                </ul>
+                <p>To be able to use these variables you will need to use PHP's echo function. Example:</p>
+                <pre><code>&lt;?php echo $author_name; ?&gt;</code></pre>
+                <p>You can use echo inside any html structure you choose. If you are unsure, you can use the default theme as a reference.</p>
+            </li>
+            <li>
+            	<strong>comments_form.php</strong>
+                <p>This file is responsible for showing the form through which users can add new comments to posts. This file requires some specific html attributes to be present in the form elements, so it is not recommended to edit it unless you are absolutely sure you know what you are doing.</p>
+                <p>If you do edit it, please be careful not to change any of the form, textarea or input tags.</p>
+            </li>
+            <li>
+            	<strong>page.php</strong>
+                <p>This file is responsible for showing a single page. In this file is where you put the page title, the page content, the page's author, the date the page was created etc.</p>
+                <p>The following variables are available to this file:</p>
+                <ul>
+                	<li><em>$title</em> - The title of the page</li>
+                    <li><em>$content</em> - The page content</li>
+                    <li><em>$user</em> - The name of the page's author</li>
+                    <li><em>$date</em> - The date the page was created</li>
+                    <li><em>$category</em> - The name of the category the page belongs to</li>
+                </ul>
+                <p>To be able to use these variables you will need to use PHP's echo function. Example:</p>
+                <pre><code>&lt;?php echo $title; ?&gt;</code></pre>
+                <p>You can use echo inside any html structure you choose. If you are unsure, you can use the default theme as a reference.</p>
+            </li>
+            <li>
+            	<strong>categories.php</strong>
+                <p>This file is responsible for showing a single category. In this file is where you put the category name and description and a list of it's child categories, pages and sections.</p>
+                <p>The following functions are available to this file:</p>
+                <ul>
+                	<li>
+                    	<em>show_category_links()</em>
+                        <p>This function prints out a list of the category's child categories, pages and sections. This function takes one required argument, <em>$links</em>, and one optional argument where you can specify what HTML tags to put before and after the whole list and before and after each link.</p>
+                        <p>Example:</p>
+<pre><code>&lt;?php show_category_links($links, array(
+    'before_link_list' => '&lt;ul&gt;',
+    'after_link_list' => '&lt;/ul&gt;',
+    'before_link' => '&lt;li&gt;',
+    'after_link' => '&lt;/li&gt;'
+)) ?&gt;</code></pre>
+                    </li>
+                </ul>
+                
+                <p>The following variables are available to this file:</p>
+                <ul>
+                	<li><em>$name</em> - The name of the category</li>
+                    <li><em>$description</em> - The description of the category</li>
+                </ul>
+                <p>To be able to use these variables you will need to use PHP's echo function. Example:</p>
+                <pre><code>&lt;?php echo $name; ?&gt;</code></pre>
+                <p>You can use echo inside any html structure you choose. If you are unsure, you can use the default theme as a reference.</p>
+            </li>
+            <li>
+            	<strong>tag.php</strong>
+                <p>This file is responsible for showing a single tag. In this file is where you put the tag name and description.</p>
+                <p>The following variables are available to this file:</p>
+                <ul>
+                	<li><em>$name</em> - The name of the tag</li>
+                    <li><em>$description</em> - The description of the tag</li>
+                </ul>
+                <p>To be able to use these variables you will need to use PHP's echo function. Example:</p>
+                <pre><code>&lt;?php echo $name; ?&gt;</code></pre>
+                <p>You can use echo inside any html structure you choose. If you are unsure, you can use the default theme as a reference.</p>
+            </li>
+        </ul>
+        
+        <p><a href="#top">Back to top</a></p>
+        <div style="height:30px;">&nbsp;</div>
+        
+        <a name="FAQ"></a>
+        <h2>Frequently Asked Questions</h2>
+        <ol>
+        	<li>
+            	<p>Q: What is FanXpression?</p>
+            	<p>A: FanXpression is a content management system intended to be used to create fansites (though if you can think of other uses, by all means go for it). It has several features that allow fansite webmasters to more easily manage their fansite, such as themes, posts, pages and different sections, such as discography.</p>
+            </li>
+            
+            <li>
+            	<p>Q: Who can use FanXpression?</p>
+                <p>A: Anyone who would like to create a fansite can use FanXpression. You only have to make sure your server meets all the <a href="#requirements">Requirements</a>  before you start using it.</p>
+            </li>
+            
+            <li>
+            	<p>Q: What are extensions?</p>
+                <p>A: Extensions are a way for you to extend the functionality of FanXpression by adding little extra bits. As of version 1.0 Beta, the adding of new extensions is not possible, but FanXpression comes with one extension installed, discography.</p>
+                <p>In the future, the plan is to make more of those, allowing webmasters to only install the extensions they need (eg. you wouldn't need functionality for discography if your fansite is about a book).</p>
+            </li>
+        </ol>
+        <p><a href="#top">Back to top</a></p>
+        <div style="height:30px;">&nbsp;</div>
+        
+        <a name="about"></a>
+        <h2>About FanXpression</h2>
+        <p>FanXpression was developed by Sunnefa Lind as a school project at SAE Institute UK, London.</p>
+        <p>Current version: Version 1.0.3 Beta</p>
+        <p>License: <a href="http://www.gnu.org/licenses/gpl.html">GNU/GPlv3</a>
+        <p><a href="#top">Back to top</a></p>
+    </body>
+</html>

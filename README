@@ -1,0 +1,29 @@
+/***********************
+    FanXpression
+    ********************
+    Copyright 2011 Sunnefa Lind
+ *********************/
+
+Installing FanXpression:
+	After you've downloaded FanXpression, unzip the archive and upload everything to the public_html (sometimes www or htdocs) folder on your server. Make sure all the files were uploaded correctly.
+	To install FanXpression navigate to http://www.whateveryourdomain.is/install.php and follow the instructions.
+You will need to know your database username, database password, database name and host name. You can get these through your cPanel (if you have one) or by asking your hosting company.
+	If the install failed for some reason, delete all the folders in your fanx_uploads folder (if there are any), remove all the database tables that may have been created from your database (if you don't know how to do this you can ask your host to do it for you) and attempt the install again.
+	If the install was successful, you will be redirected to the admin panel where you can log in and start creating your fansite.
+
+Themes:
+	To make your own theme, you can either start from scratch or duplicate the default theme and edit it.
+	More information on themes, theme files and theme functions is available in the documentation. To access it, either navigate to whateveryourdomain.is/docs or log in to the admin panel and press the Help button near the bottom of the main menu.
+
+Note about sections and extensions:
+Sections and extensions are the same thing. Sections was the original name, but the name extensions is more descriptive and more commonly used for this feature. On the surface, that is in the GUI, the name extensions is used, but in the code, mysql tables and the models the name sections is used. This is because the decision to change the name was taken at the last minute and for fear of screwing things up, the name wasn't changed throughout the entire code.
+
+If you would like to try your hand at creating an extension, there are three rules you must follow:
+
+1. All the extension files must be in a folder in the fanx_extensions folder (be careful not to have any spaces in your folder name)
+2. There must be a file called index.php in that folder. This is the file that is included into the main admin panel.
+3. There must be a file called show.php in that folder. This is the file that is included into the front end.
+
+Optional: If you need to create tables to use with your extension, those must be created by a file in your extension folder called install.php . How you go about creating them is up to you.
+
+Other than that, how your extension is setup is up to you. You have access to all the functions and classes of the main script but you can also create your own functions and classes. You can use the AbstractDatabase class to extend a class that needs database access and the Theme class to extend a class that needs to parse theme files.
