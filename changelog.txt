@@ -1,5 +1,14 @@
 FanXpression changelog
 
+TODO:
+Add ajax/more javascript
+Create more extensions
+Rename extensions in the code
+Rethink the object oriented aspects, instead of classes that connect to the database make each post/comment/user an object.
+Create a nicer default theme, perhaps with an actual fansite layout
+Add sidebar widget support
+Create a decent website that is not just a demo
+
 Version 1.0.3 started on 27.09.2011
     Changes from version 1.0.2
         -Changed the name of sections from sections to extensions on the surface - most of the code is still unchanged
